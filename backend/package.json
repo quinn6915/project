@@ -1,0 +1,43 @@
+{
+  "name": "test-tony",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start:dev": "nodemon",
+    "start": "nodemon --ext 'ts,json' --ignore 'src/**/*.spec.ts' --exec ts-node-dev src/index",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ratovoson81/test-react.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ratovoson81/test-react/issues"
+  },
+  "homepage": "https://github.com/ratovoson81/test-react#readme",
+  "dependencies": {
+    "@types/bcrypt": "^5.0.0",
+    "@types/express": "^4.17.12",
+    "@types/jsonwebtoken": "^8.5.1",
+    "@types/mongoose": "^5.11.97",
+    "@types/mongoose-unique-validator": "^1.0.5",
+    "@types/multer": "^1.4.5",
+    "@types/node": "^15.12.2",
+    "bcrypt": "^5.0.1",
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.12.13",
+    "mongoose-unique-validator": "^2.0.3",
+    "multer": "^1.4.2",
+    "nodemon": "^2.0.7",
+    "ts-node": "^10.0.0",
+    "typescript": "^4.3.2"
+  },
+  "devDependencies": {}
+}
