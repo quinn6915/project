@@ -55,7 +55,7 @@ const ListCar: FC = () => {
                   </span>
                 ))
               ) : (
-                <p>Connecter vous pour commenter !</p>
+                <p>Connectez vous pour commenter !</p>
               )}
             </div>
             {auth.user && (
