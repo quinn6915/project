@@ -1,6 +1,6 @@
 import { ChangeEvent, SyntheticEvent, useState } from "react";
 import { comment } from "../api";
-import { CommentType } from "../api/types";
+import { CommentInput } from "../api/types";
 import { useAppDispatch, useAppSelector } from "../hooks";
 import { commentCar } from "../store/Car";
 
@@ -10,18 +10,18 @@ export const useComment = () => {
 
   const userId = user?.userId ? user.userId : null;
 
-  const [form, setForm] = useState<CommentType>({
-    content: "",
+  const [form, setForm] = useState<CommentInput>({
     user: userId,
   });
 
   const handleChange = (
-    event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+    i: number
   ) => {
-    const { name, value } = event.target;
+    const { value } = event.target;
     setForm({
       ...form,
-      [name]: value,
+      [i]: value,
       user: userId,
     });
   };
@@ -29,14 +29,14 @@ export const useComment = () => {
   const submit = async (
     event: SyntheticEvent,
     id: string,
-    setLoading: Function
+    setLoading: Function,
+    i: number
   ) => {
     setLoading(true);
     event.preventDefault();
-    const value = await comment(form, id);
+    const value = await comment(form, id, i);
     dispatch(commentCar(value));
     setForm({
-      content: "",
       user: userId,
     });
     setLoading(false);

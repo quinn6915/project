@@ -1,6 +1,6 @@
 import axios from "axios";
 import { TOKEN, URL_API } from "../constants/config";
-import { CarType, CommentType, UserType } from "./types";
+import { CarType, CommentInput, UserType } from "./types";
 
 const token = localStorage.getItem(TOKEN);
 axios.defaults.headers.common = { Authorization: token ? `${token}` : "" };
@@ -42,9 +42,17 @@ export async function createCar(form: CarType) {
     .catch((error) => error);
 }
 
-export async function comment(form: CommentType, id: String) {
+export async function comment(
+  form: CommentInput,
+  idCar: String,
+  idComment: number
+) {
+  const data = {
+    content: form[idComment],
+    user: form.user,
+  };
   return await axios
-    .put(`${URL_API}/car/comment/${id}`, form)
+    .put(`${URL_API}/car/comment/${idCar}`, data)
     .then((res) => res.data)
     .catch((error) => error);
 }

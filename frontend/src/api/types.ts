@@ -31,7 +31,7 @@ export type comType = {
   };
 };
 
-export type CommentType = {
-  content: string;
+export type CommentInput = {
+  [index: number]: string;
   user: string | null;
 };

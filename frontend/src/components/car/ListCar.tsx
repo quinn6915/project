@@ -22,8 +22,8 @@ const ListCar: FC = () => {
           <SpinnerCircular size="75" color="black" />
         </div>
       )}
-      {cars.map((item: ItemCarType) => (
-        <div key={item._id} className="flex justify-center ">
+      {cars.map((item: ItemCarType, i: number) => (
+        <div key={i} className="flex justify-center ">
           <div className="flex flex-col justify-center w-2/3 mt-8 border border-gray-100 bg-gray-100 rounded-lg">
             <div className="h-14 flex items-center justify-start ml-8">
               <p className="text-lg">{item.title}</p>
@@ -65,16 +65,17 @@ const ListCar: FC = () => {
                   type="text"
                   className="focus:outline-none bg-gray-100 w-full"
                   placeholder="Votre commentaire"
-                  name="content"
-                  onChange={handleChange}
-                  value={form.content}
+                  name={form[i]}
+                  onChange={(e) => handleChange(e, i)}
+                  value={form[i] || ""}
                 />
                 {loading ? (
                   <SpinnerCircular size="25" color="black" />
                 ) : (
                   <button
+                    disabled={form[i] === undefined || form[i] === ""}
                     onClick={(e: SyntheticEvent) =>
-                      submit(e, item._id, setLoading)
+                      submit(e, item._id, setLoading, i)
                     }
                   >
                     Envoyer
