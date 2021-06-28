@@ -23,7 +23,9 @@ export default function Register() {
           />
         </div>
         <div className="mb-3 space-y-2 md:flex flex-col w-2/3 ">
-          <label className="font-semibold text-gray-600 py-2">Mot de passe</label>
+          <label className="font-semibold text-gray-600 py-2">
+            Mot de passe
+          </label>
           <input
             required
             placeholder="entrez le mot de passe"
@@ -32,6 +34,20 @@ export default function Register() {
             name="password"
             onChange={handleChange}
             value={form.password}
+          />
+        </div>
+        <div className="mb-3 space-y-2 md:flex flex-col w-2/3 ">
+          <label className="font-semibold text-gray-600 py-2">
+            Comfirmer le mot de passe
+          </label>
+          <input
+            required
+            placeholder="retapez le mot de passe"
+            className="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded-lg h-12 px-4"
+            type="password"
+            name="confirmPassword"
+            onChange={handleChange}
+            value={form.confirmPassword}
           />
         </div>
         <input

@@ -1,6 +1,7 @@
 export type UserType = {
   name: string;
   password: string;
+  confirmPassword?: string;
 };
 
 export type CarType = {

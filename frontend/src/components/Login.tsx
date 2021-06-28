@@ -40,7 +40,7 @@ export default function Login() {
         });
       } else
         addToast(result.error, {
-          appearance: "warning",
+          appearance: "error",
           autoDismiss: true,
         });
     });
@@ -65,7 +65,9 @@ export default function Login() {
           />
         </div>
         <div className="mb-3 space-y-2 md:flex flex-col w-2/3 ">
-          <label className="font-semibold text-gray-600 py-2">Mot de passe</label>
+          <label className="font-semibold text-gray-600 py-2">
+            Mot de passe
+          </label>
           <input
             required
             placeholder="entrez mot de passe"

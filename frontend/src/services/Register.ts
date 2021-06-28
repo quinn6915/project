@@ -11,6 +11,7 @@ export const useRegister = () => {
   const [form, setForm] = useState<UserType>({
     name: "",
     password: "",
+    confirmPassword: "",
   });
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -23,22 +24,28 @@ export const useRegister = () => {
 
   const submit = async (event: SyntheticEvent) => {
     event.preventDefault();
-    const result = await register(form);
-    if (result.error) {
-      addToast(result.error.errors.name.message, {
-        appearance: "warning",
+    if (form.password !== form.confirmPassword) {
+      addToast("Les mots de passe ne correspondent pas", {
+        appearance: "error",
         autoDismiss: true,
       });
-    }
-    if (result.name) {
-      addToast("Compte créer", {
-        appearance: "success",
-        autoDismiss: true,
-      });
-      history.push("/");
+    } else {
+      const result = await register(form);
+      if (result.error) {
+        addToast(result.error.errors.name.message, {
+          appearance: "warning",
+          autoDismiss: true,
+        });
+      }
+      if (result.name) {
+        addToast("Compte créer", {
+          appearance: "success",
+          autoDismiss: true,
+        });
+        history.push("/");
+      }
     }
   };
-
   return {
     form,
     handleChange,
