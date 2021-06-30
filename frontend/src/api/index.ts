@@ -1,6 +1,12 @@
 import axios from "axios";
 import { TOKEN, URL_API } from "../constants/config";
 import { CarType, CommentInput, UserType } from "./types";
+import socketClient from "socket.io-client";
+
+const socket = socketClient(URL_API);
+socket.on("connection", () => {
+  console.log(`I'm connected with the back-end`);
+});
 
 const token = localStorage.getItem(TOKEN);
 axios.defaults.headers.common = { Authorization: token ? `${token}` : "" };
