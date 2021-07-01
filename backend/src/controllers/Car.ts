@@ -1,9 +1,10 @@
 import { Request, Response } from "express";
+import { io } from "..";
 import { Car } from "../models/Car";
 import { Comment } from "../models/Comment";
 
 export const create = (req: Request, res: Response) => {
-  const carObject = JSON.parse(req.body.car);
+  /*const carObject = JSON.parse(req.body.car);
   delete carObject.file;
   delete carObject._id;
   const car = new Car({
@@ -21,7 +22,7 @@ export const create = (req: Request, res: Response) => {
         .execPopulate()
         .then((car) => res.status(201).json(car))
     )
-    .catch((error: Error) => res.status(400).json({ error }));
+    .catch((error: Error) => res.status(400).json({ error }));*/
 };
 
 export const modify = (req: Request, res: Response) => {

@@ -11,7 +11,7 @@ import multer from "../middleware/ConfigMulter";
 
 const router: Router = express.Router();
 
-router.post("/", multer, create);
+router.post("/", /*multer,*/ create);
 router.put("/:id", modify);
 router.delete("/:id", deleteCar);
 router.get("/:id", getOne);

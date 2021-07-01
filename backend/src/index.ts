@@ -13,7 +13,7 @@ app.use(bodyParser.json());
 app.use(cors());
 const server = http.createServer(app);
 
-const io = new Server(server, {
+export const io = new Server(server, {
   cors: {
     origin: "*",
     methods: ["GET", "POST"],
@@ -50,6 +50,9 @@ server.listen(4000, () => {
 });
 
 io.on("connection", (socket) => {
-  console.log("new client connected");
-  socket.emit("connection", null);
+  socket.on("add", (text) => {
+    socket.join(text);
+    console.log("helllo" + " " + JSON.stringify(text));
+    socket.to(text).emit("ok", text);
+  });
 });

@@ -4,6 +4,8 @@ import { CarType } from "../api/types";
 import { useAppDispatch, useAppSelector } from "../hooks";
 import { addCar } from "../store/Car";
 import { useToasts } from "react-toast-notifications";
+import socketClient from "socket.io-client";
+import { URL_API } from "../constants/config";
 
 export const useAddCar = () => {
   const { addToast } = useToasts();
@@ -37,8 +39,15 @@ export const useAddCar = () => {
 
   const submit = async (event: SyntheticEvent, closeModal: Function) => {
     event.preventDefault();
-    const value = await createCar(form);
-    dispatch(addCar(value));
+
+    //const value = await createCar(form);
+    //dispatch(addCar(value));
+
+    const socket = socketClient(URL_API);
+    socket.emit("add", { text: "add" });
+    /*socket.on("ok", (text) => {
+      console.log("ok" + " " + JSON.stringify(text));
+    });*/
     addToast("voiture publié", {
       appearance: "success",
       autoDismiss: true,

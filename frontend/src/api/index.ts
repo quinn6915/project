@@ -4,8 +4,8 @@ import { CarType, CommentInput, UserType } from "./types";
 import socketClient from "socket.io-client";
 
 const socket = socketClient(URL_API);
-socket.on("connection", () => {
-  console.log(`I'm connected with the back-end`);
+socket.on("ok", (text) => {
+  console.log("ok2" + " " + JSON.stringify(text));
 });
 
 const token = localStorage.getItem(TOKEN);

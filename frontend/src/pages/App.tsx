@@ -11,6 +11,8 @@ import LoadingBar from "react-top-loading-bar";
 import { useRef } from "react";
 import { useState } from "react";
 import { useEffect } from "react";
+import socketClient from "socket.io-client";
+import { URL_API } from "../constants/config";
 
 export default function App() {
   const [loading, setLoading] = useState<Boolean>(true);
@@ -24,6 +26,14 @@ export default function App() {
       setLoading(false);
     }, 2000);
   }, []);
+
+  const socket = socketClient(URL_API);
+
+  useEffect(() => {
+    socket.on("ok", (data) => {
+      console.log(data);
+    });
+  });
 
   return (
     <ProvideAuth>
