@@ -1,4 +1,4 @@
-import { ChangeEvent, SyntheticEvent, useState } from "react";
+import { ChangeEvent, SyntheticEvent, useEffect, useState } from "react";
 import { createCar } from "../api";
 import { CarType } from "../api/types";
 import { useAppDispatch, useAppSelector } from "../hooks";
@@ -19,6 +19,14 @@ export const useAddCar = () => {
     file: null,
     user: userId,
   });
+
+  const socket = socketClient(URL_API);
+
+  useEffect(() => {
+    socket.on("ok", (text) => {
+      console.log("reussi", text);
+    });
+  }, []);
 
   const handleChange = (
     event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -43,11 +51,7 @@ export const useAddCar = () => {
     //const value = await createCar(form);
     //dispatch(addCar(value));
 
-    const socket = socketClient(URL_API);
     socket.emit("add", { text: "add" });
-    /*socket.on("ok", (text) => {
-      console.log("ok" + " " + JSON.stringify(text));
-    });*/
     addToast("voiture publié", {
       appearance: "success",
       autoDismiss: true,

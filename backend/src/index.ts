@@ -51,8 +51,7 @@ server.listen(4000, () => {
 
 io.on("connection", (socket) => {
   socket.on("add", (text) => {
-    socket.join(text);
-    console.log("helllo" + " " + JSON.stringify(text));
-    socket.to(text).emit("ok", text);
+    console.log("add");
+    io.emit("ok", text);
   });
 });

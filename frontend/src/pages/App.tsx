@@ -27,14 +27,6 @@ export default function App() {
     }, 2000);
   }, []);
 
-  const socket = socketClient(URL_API);
-
-  useEffect(() => {
-    socket.on("ok", (data) => {
-      console.log(data);
-    });
-  });
-
   return (
     <ProvideAuth>
       <LoadingBar color="#f11946" ref={ref} />
